@@ -7,7 +7,7 @@
       "source.fixAll.eslint": true
     }
   },
-  "service": "app",
+  "service": "prisma",
   "extensions": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint", "prisma.prisma"],
   // "postCreateCommand": "yarn build",
   "workspaceFolder": "/usr/src/app",
