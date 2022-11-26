@@ -1,6 +1,5 @@
-# learn-prisma
-
-Node.js based project to learn prisma.
+# Description
+This is a Node.js based project to learn prisma.
 
 # Requirement
 
