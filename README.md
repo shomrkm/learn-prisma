@@ -2,51 +2,29 @@
 
 Node.js based project to learn prisma.
 
-# Note
+# Requirement
 
-TODO: what is "prisma generate"
+- Docker
+- Docker Compose (version: 3)
+- Visual Studio Code
+  - Dev Containers (extension)
+
+# How to Run
+### 1. Clone this repository and open in VS Code.
+
+### 2. Open terminal and execute docker-compose up.
 
 ```sh
-npx prisma generate
+> docker-composer up -d
 ```
 
-TODO: Diferences between include and select
+### 3. Open Container by Dev Container extension.
+   ![open-container-by-devcontainer](./images/open-container-by-devcontainer.png)
 
-```TypeScript
-const user = await prisma.user.create({
-  data: {
-    name: 'Shotaro',
-    email: 'Shotaro@test.com',
-    age: 36,
-    isAdmin: true,
-    userPreference: {
-      create: {
-        emailUpdates: true,
-      },
-    },
-  },
-  include: {
-    userPreference: true,
-  },
-});
-```
+### 4. Update [scripts.ts](./script.ts) as you like.
 
-```TypeScript
-const user = await prisma.user.create({
-  data: {
-    name: 'Shotaro',
-    email: 'Shotaro@test.com',
-    age: 36,
-    isAdmin: true,
-    userPreference: {
-      create: {
-        emailUpdates: true,
-      },
-    },
-  },
-  select: {
-    name: true,
-    userPreference: { select: { id: true } },
-  },
-});
+### 5. Run Scrict.
+
+```sh
+> npm run devStart
 ```
