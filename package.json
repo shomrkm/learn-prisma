@@ -20,7 +20,9 @@
     "type": "git",
     "url": "git+https://github.com/shomrkm/learn-prisma.git"
   },
-  "keywords": ["prisma"],
+  "keywords": [
+    "prisma"
+  ],
   "author": "Shotaro Murakami",
   "license": "ISC",
   "bugs": {

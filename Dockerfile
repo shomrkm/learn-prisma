@@ -7,9 +7,9 @@ WORKDIR $PROJECT_ROOTDIR
 COPY package.json $PROJECT_ROOTDIR
 COPY package.json package-lock.json $PROJECT_ROOTDIR
 
-RUN npm install
-
 COPY . $PROJECT_ROOTDIR
+
+RUN npm install
 
 EXPOSE 3000
 
