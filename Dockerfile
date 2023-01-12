@@ -10,6 +10,7 @@ COPY package.json package-lock.json $PROJECT_ROOTDIR
 COPY . $PROJECT_ROOTDIR
 
 RUN npm install
+RUN npm prisma generate
 
 EXPOSE 3000
 
