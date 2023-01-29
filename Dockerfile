@@ -12,7 +12,7 @@ COPY . $PROJECT_ROOTDIR
 RUN npm install
 
 # This command reads the Prisma schema and automatically creates the Prisma Client code
-RUN npm prisma generate
+RUN npx prisma generate
 
 EXPOSE 3000
 
