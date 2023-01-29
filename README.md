@@ -23,9 +23,17 @@ This is a Node.js based project to learn prisma.
 
 ![open-container-by-devcontainer](./images/open-container-by-devcontainer.png)
 
-#### 4. Update [scripts.ts](./script.ts) as you like.
+#### 4. Update [schema.prisma.ts](./prisma/schema.prisma) as you like.
 
-#### 5. Run Scrict.
+#### 5. Run prisma migrate
+
+```sh
+> npx prisma migrate dev --name init
+```
+
+#### 6. Update [scripts.ts](./script.ts) as you like.
+
+#### 7. Run Scrict.
 
 ```sh
 > npm run devStart
