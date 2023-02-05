@@ -1,36 +1,22 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Place } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.user.deleteMany();
-  await prisma.user.createMany({
+  await prisma.place.deleteMany();
+  await prisma.place.createMany({
     data: [
-      { name: 'Shotaro', age: 10, email: 'Shotaro@test1.com', isAdmin: true },
-      { name: 'Shotaro', age: 20, email: 'Shotaro@test2.com', isAdmin: false },
-      { name: 'Shotaro', age: 30, email: 'Shotaro@test3.com', isAdmin: true },
-      { name: 'Hitomi', age: 30, email: 'Hitomi@test1.com', isAdmin: false },
+      { body: 'test1', latitude: 39.6961687, longitude: 141.1232217 },
+      { body: 'test2', latitude: 39.700226, longitude: 141.1388751 },
+      { body: 'test3', latitude: 39.6975349, longitude: 141.1440678 },
     ],
   });
-  const users = await prisma.user.findMany({
-    where: {
-      OR: [
-        {
-          name: 'Shotaro',
-          age: { lt: 25 },
-          isAdmin: true,
-        },
-        {
-          email: { contains: 'Hitomi' },
-        },
-      ],
-    },
-    select: {
-      name: true,
-      email: true,
-      userPreference: { select: { id: true } },
-    },
-  });
-  console.log(users);
+
+  // Obtain data within 500 meters from a specified position.
+  const longitude = 141.1442678;
+  const latitude = 39.6975649;
+  const result =
+    await prisma.$queryRaw<Place>`SELECT id, body FROM "Place" WHERE ST_DWithin(ST_MakePoint(longitude, latitude), ST_MakePoint(${longitude}, ${latitude})::geography, 500)`;
+  console.log(result);
 }
 
 main()
