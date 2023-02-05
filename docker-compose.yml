@@ -19,7 +19,8 @@ services:
         ipv4_address: 172.30.0.2
 
   db:
-    image: postgis/postgis:14-3.3-alpine
+    build: ./db
+    tty: true
     container_name: postgres
     ports:
       - 5432:5432

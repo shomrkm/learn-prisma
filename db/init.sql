@@ -1,0 +1,1 @@
+CREATE DATABASE test TEMPLATE template_postgis;
