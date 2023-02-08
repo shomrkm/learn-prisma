@@ -19,17 +19,17 @@ model Task {
   detail      String?
   status      TaskStatus @default(TODO)
   targets     Targets[]  @default([])
-  level       Level      @default(BEGINNER)
   priority    Priority   @default(NORMAL)
-  // previous
-  // next
+  level       Level      @default(BEGINNER)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 
   user   User?   @relation("createTask", fields: [userId], references: [id])
   userId String?
 
-  workflow      Workflow? @relation(fields: [workflowId], references: [id])
-  workflowId    String?
-  AssignedUsers User[]
+  workflow   Workflow? @relation(fields: [workflowId], references: [id])
+  workflowId String?
 }
 
 model Workflow {
@@ -38,10 +38,8 @@ model Workflow {
 }
 
 model User {
-  id           String  @id @default(uuid())
-  createTask   Task[]  @relation("createTask")
-  taskId       String?
-  assignedTask Task?   @relation(fields: [taskId], references: [id])
+  id         String @id @default(uuid())
+  createTask Task[] @relation("createTask")
 }
 
 enum TaskStatus {

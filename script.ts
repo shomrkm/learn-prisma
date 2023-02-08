@@ -3,6 +3,8 @@ const prisma = new PrismaClient();
 
 async function main() {
   await prisma.place.deleteMany();
+  await prisma.task.deleteMany();
+
   await prisma.place.createMany({
     data: [
       { body: 'test1', latitude: 39.6961687, longitude: 141.1232217 },
@@ -10,9 +12,7 @@ async function main() {
       { body: 'test3', latitude: 39.6975349, longitude: 141.1440678 },
     ],
   });
-  await prisma.task.create({data:
-    {title: 'test'}
-  })
+  await prisma.task.create({ data: { title: 'test' } });
 
   // Obtain data within 500 meters from a specified position.
   const longitude = 141.1442678;
