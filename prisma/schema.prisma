@@ -10,6 +10,65 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Task {
+  id String @id @default(uuid())
+  no Int    @default(autoincrement())
+
+  title       String     @unique @db.Char(50)
+  description String?    @db.Char(500)
+  detail      String?
+  status      TaskStatus @default(TODO)
+  targets     Targets[]  @default([])
+  level       Level      @default(BEGINNER)
+  priority    Priority   @default(NORMAL)
+  // previous
+  // next
+
+  user   User?   @relation("createTask", fields: [userId], references: [id])
+  userId String?
+
+  workflow      Workflow? @relation(fields: [workflowId], references: [id])
+  workflowId    String?
+  AssignedUsers User[]
+}
+
+model Workflow {
+  id   String @id @default(uuid())
+  Task Task[]
+}
+
+model User {
+  id           String  @id @default(uuid())
+  createTask   Task[]  @relation("createTask")
+  taskId       String?
+  assignedTask Task?   @relation(fields: [taskId], references: [id])
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  COMPLETED
+  CLOSED
+}
+
+enum Targets {
+  MAP
+  POI
+  ROAD
+}
+
+enum Level {
+  EXPERT
+  INTERMEDIATE
+  BEGINNER
+}
+
+enum Priority {
+  HIGH
+  NORMAL
+  LOW
+}
+
 model Place {
   id Int @id @default(autoincrement())
 
