@@ -4,8 +4,7 @@ This is a Node.js based project to learn prisma.
 
 # Requirement
 
-- Docker
-- Docker Compose (version: 3)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - Visual Studio Code
   - [Dev Containers (extension)](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
